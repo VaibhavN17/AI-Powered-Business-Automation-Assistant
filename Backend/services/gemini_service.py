@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GEMINI_MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
 
 genai.configure(api_key=GEMINI_API_KEY)
 
@@ -61,7 +62,7 @@ async def get_ai_response(
     """
     try:
         model = genai.GenerativeModel(
-            model_name="gemini-1.5-flash",
+            model_name=GEMINI_MODEL_NAME,
             system_instruction=SYSTEM_PROMPT,
         )
 
@@ -86,6 +87,7 @@ async def get_ai_response(
         }
 
     except Exception as e:
+        print(f"Gemini chat error: {e}")
         return {
             "reply": "I'm sorry, I'm having trouble connecting right now. Please try again in a moment or contact Codenixia support directly.",
             "tokens_used": None,
@@ -97,7 +99,7 @@ async def get_ai_response(
 async def generate_lead_summary(lead_data: dict) -> str:
     """Generate an AI summary/insight for a new lead."""
     try:
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel(GEMINI_MODEL_NAME)
         prompt = f"""
         A new lead has been captured for Codenixia internship program.
         Lead details:

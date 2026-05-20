@@ -31,7 +31,7 @@ A comprehensive guide for frontend developers to build the UI for the Codenixia 
 - Backend: FastAPI (Python)
 - Database: MongoDB
 - AI: Google Gemini 1.5 Flash
-- Frontend: React 19 + Vite
+- Frontend: React / Vue / Angular (Your Choice)
 
 ---
 
@@ -698,12 +698,12 @@ src/
 
 ## 🚀 Setup Instructions
 
-### 1. Open the Vite client
+### 1. Create React App (or use your framework)
 
 ```bash
-cd "e:\mini project\business bot\Frontend\client"
-npm install
-npm run dev
+npx create-react-app codenixia-frontend
+cd codenixia-frontend
+npm install axios react-router-dom
 ```
 
 ### 2. Set Up API Client
@@ -712,7 +712,7 @@ npm run dev
 ```javascript
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -726,7 +726,7 @@ export default api;
 
 **`.env`:**
 ```
-VITE_API_BASE_URL=http://localhost:8000
+REACT_APP_API_URL=http://localhost:8000
 ```
 
 ### 3. Create API Service Modules
@@ -1135,9 +1135,9 @@ For any API changes or new features:
 
 - [ ] Backend running at `http://localhost:8000`
 - [ ] Test health endpoint: `curl http://localhost:8000/health`
-- [ ] Open the Vite client in `Frontend/client`
-- [ ] Install dependencies: `npm install`
-- [ ] Create `.env` file with `VITE_API_BASE_URL`
+- [ ] Create React app: `npx create-react-app codenixia-frontend`
+- [ ] Install dependencies: `npm install axios react-router-dom`
+- [ ] Create `.env` file with `REACT_APP_API_URL`
 - [ ] Create API service files
 - [ ] Build first component (ChatWindow or LeadForm)
 - [ ] Test API calls using interactive docs at `/docs`
